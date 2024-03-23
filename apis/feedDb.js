@@ -50,11 +50,13 @@ const feedDb = {
       console.log("Error feeding the db", error);
       res.status(500).send("Error feeding the db");
     } finally {
-      fs.unlink(req.file.path, (err) => {
-        if (err) {
-          console.error("Error deleting file");
-        }
-      });
+      if (req.file) {
+        fs.unlink(req.file.path, (err) => {
+          if (err) {
+            console.error("Error deleting file");
+          }
+        });
+      }
     }
   },
 };

@@ -23,7 +23,5 @@ const Message = sequelize.define("Message", {
     type: Sequelize.DATE,
   },
 });
-// Message.belongsTo(User);
-// Message.belongsTo(User);
 
 module.exports = Message;

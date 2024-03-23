@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   api:
     container_name: node_assignment
@@ -9,14 +9,23 @@ services:
     depends_on:
       - postgres_db
     volumes:
-    - .:/usr/src/app
-    - /usr/src/app/node_modules
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  frontend:
+    container_name: frontend
+    restart: always
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
 
   postgres_db:
     container_name: postgres_db
     image: postgres
     ports:
-      - '5433:${DB_PORT}'
+      - "5433:${DB_PORT}"
     volumes:
       - data:/data/db
     environment:
@@ -24,5 +33,5 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
 
-volumes: 
- data: {}
+volumes:
+  data: {}

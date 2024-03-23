@@ -23,7 +23,7 @@ const listUsersControler = {
 
       for (let message of recentMessages) {
         const differentUserId =
-          message.sender !== userId ? message.sender : message.receiver;
+          message.sender != userId ? message.sender : message.receiver;
 
         const user = await User.findByPk(differentUserId);
 
